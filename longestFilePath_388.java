@@ -9,7 +9,7 @@ public class Solution {
         for(String item :stri)
         {
             lev=item.lastIndexOf("\t")+1;
-            
+            //when u goto the next last lev, the previosu "same lev" info will lost, but that is fine.
             currentLen=stack[lev+1]=stack[lev]+item.length()-lev+1; // "/t" the length of the string is 1,
            // this 1 is for the last / that need to append to the 
             if(item.contains("."))
