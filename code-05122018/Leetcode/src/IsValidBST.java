@@ -2,11 +2,7 @@ import java.io.*;
 import java.util.*;
 
 public class IsValidBST {
-	// Definition for a binary tree node.
-	boolean global=true;
 	public boolean isValid(TR root) {
-
-		ArrayList<Integer> arr = new ArrayList<Integer>();
 		int lastone=Integer.MIN_VALUE;
 		return copyBST(root,lastone);
 	}
