@@ -5,7 +5,7 @@ import java.util.LinkedList;
 public class NQueens {
 	
 	
-	// main idea: each columns configuration will map out to a ArrayList<Strin
+	// main idea: each columns configuration will map out to a ArrayList<String> solution
 	public static void helper(ArrayList<ArrayList<String>> result,ArrayList<Integer> cols, int n)
 	{
 		if(cols.size()==n)
