@@ -20,7 +20,7 @@ public class NQueens {
 			{
 				continue;
 			}
-			else {
+			else {WeaveList.
 				cols.add(i);
 				helper(result,cols,n);
 				cols.remove(cols.size()-1);
