@@ -58,7 +58,9 @@ public class Subset {
 			return;
 		}
 		for (int i = pos; i < input.size(); i++) {
-			if (i - 1 >= 0 && input.get(i) == input.get(i - 1)) {
+			//should be i!=position, otherwise [1,2,2] will not get passed.not i-1>=0, 
+			//they are different conditions.
+			if (i!= position && input.get(i) == input.get(i - 1)) {
 				continue;
 			}
 			one.add(input.get(i));
