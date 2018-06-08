@@ -2,7 +2,8 @@ import java.util.*;
 
 public class WordBreak2 {
 
-	//print out first
+	//using dfs to find all the solutions. this can be a helper method on leetcode, 
+	//since the parameter required on leetcode is only "String s and List<String> wordDict".
 	public static void getAllSolutions(String s, List<String> wordDict,ArrayList<ArrayList<String>> result, ArrayList<String> one,int index) {
 		
 		if(index==s.length())
