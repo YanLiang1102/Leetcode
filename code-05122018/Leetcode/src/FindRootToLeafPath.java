@@ -27,13 +27,7 @@ public class FindRootToLeafPath {
     	TR B=new TR(6,"B");
     	TR C=new TR(271,"C");
     	TR D=new TR(28,"D");
-    	TR E=new TR(0,"E");expect to see 580
-    	there is root to leaf sum to 580
-    	expect to see 591
-    	there is root to leaf sum to 591
-    	expect to see 619
-    	there is root to leaf sum to 619
-    	not expect to see 620
+    	TR E=new TR(0,"E");
     	TR F=new TR(561,"F");
     	TR G=new TR(3,"G");
     	TR H=new TR(17,"H");
