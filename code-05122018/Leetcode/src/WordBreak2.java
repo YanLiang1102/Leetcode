@@ -91,6 +91,44 @@ public class WordBreak2 {
 		return res;
 	}
 	
+	//loop through the string or loop through the dictionary depends on if the string is relative short or the dictionary is relative short.
+	public static List<String> dfsWithMemorization3(String s, List<String>wordDict, HashMap<String,List<String>>map)
+	{
+		if(map.containsKey(s))
+		{
+			return map.get(s);
+		}
+		
+		List<String> res=new ArrayList<String>();
+		//this is another strategy to solve the problem.
+		if(s.equals(""))
+		{
+			res.add("");
+			return res;
+		}
+		for(int i=0;i<s.length();i++)
+		{
+			String curr=s.substring(0, i+1);
+			if(wordDict.contains(curr))
+			{
+				List<String> temp=dfsWithMemorization(s.substring(i+1),wordDict,map);
+				if(temp.isEmpty())
+				{
+					res.add(curr+" ");
+				}
+				else
+				{
+					for(String st:temp)
+					{
+						res.add(curr+" "+st);
+					}
+				}
+			}
+		}
+		map.put(s, res);
+		return res;
+	}
+	
 	//this test can not be passed why, how to fix this problem.
 //	"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 	//["a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"]
@@ -122,7 +160,7 @@ public class WordBreak2 {
 //	    wordDict.add("mn");
 		
 		HashMap<String, List<String>>map=new HashMap<String,List<String>>();
-		List<String> res=dfsWithMemorization2(s,wordDict,map);
+		List<String> res=dfsWithMemorization3(s,wordDict,map);
 		for(String str:res)
 		{
 			System.out.println(str);
