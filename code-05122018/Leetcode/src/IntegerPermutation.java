@@ -47,6 +47,56 @@ public class IntegerPermutation {
     }
     
     /*
+     * lai offer solution better than mine, because the index not start with 0 but start with the passed in index
+     * but the input is different
+     */
+    public static void swap(char[] chararray, int i, int j)
+    {
+    	char temp=chararray[i];
+    	chararray[i]=chararray[j];
+    	chararray[j]=temp;
+    }
+    public static void permutateNoDup2(char[] chararray, int index)
+    {
+        if(index==chararray.length)
+        {
+        	System.out.println(new String(chararray));
+        	return;
+        }
+        for(int i=index;i<chararray.length;i++)
+        {
+          swap(chararray,index,i);
+          permutateNoDup2(chararray, index+1);
+          swap(chararray,i,index);
+        }
+    }
+    
+    public static void permutateWithDup2(char[] chararray, int index)
+    {
+    	if(index==chararray.length)
+        {
+        	System.out.println(new String(chararray));
+        	return;
+        }
+    	Set<Character> set=new HashSet();
+        for(int i=index;i<chararray.length;i++)
+        {
+        	
+        	if(!set.contains(chararray[i]))
+        	{
+        		set.add(chararray[i]);
+                swap(chararray,i,index);               
+                permutateWithDup2(chararray, index+1);
+                swap(chararray,i,index);
+                
+        	}
+       }
+    	
+    }
+    
+
+    
+    /*
      * build the hash in this way
      */
     public static HashMap<Integer, Integer> buildHash(ArrayList<Integer> input)
@@ -70,24 +120,33 @@ public class IntegerPermutation {
     
     public static void main(String[] args)
     {
-    	ArrayList<Integer> input=new ArrayList<Integer>();
-    	input.add(1);
-    	input.add(2);
-    	input.add(2);
-    	//input.add(4);
+//    	ArrayList<Integer> input=new ArrayList<Integer>();
+//    	input.add(1);
+//    	input.add(2);
+//    	input.add(2);
+//    	//input.add(4);
+//    	
+//    	ArrayList<ArrayList<Integer>> result=new ArrayList<ArrayList<Integer>>();
+//    	//permutateNoDup(input,result,new ArrayList<Integer>());
+//    	HashMap<Integer,Integer> hash=buildHash(input);
+//        permutateDup(hash,new ArrayList<Integer>(),result,3);
+//    	for(ArrayList<Integer> item: result)
+//    	{
+//    	    for(int i:item)
+//    	    {
+//    	    	System.out.print(i+",");
+//    	    }
+//    	    System.out.println(" ");
+//    	}
+//    	
+//    	String test="123";
+//    	permutateNoDup2(test.toCharArray(),0);
     	
-    	ArrayList<ArrayList<Integer>> result=new ArrayList<ArrayList<Integer>>();
-    	//permutateNoDup(input,result,new ArrayList<Integer>());
-    	HashMap<Integer,Integer> hash=buildHash(input);
-        permutateDup(hash,new ArrayList<Integer>(),result,3);
-    	for(ArrayList<Integer> item: result)
-    	{
-    	    for(int i:item)
-    	    {
-    	    	System.out.print(i+",");
-    	    }
-    	    System.out.println(" ");
-    	}
+    	String test1="121";
+    	permutateWithDup2(test1.toCharArray(),0);
+    	
+    	
+    	
     	
     }
 }
