@@ -1,0 +1,31 @@
+BFS:
+  k smallest in unsorted array
+  get keys in binary tree layer by layer 
+  bipartite
+  check if binary tree is complete
+  kth smallest element in sorted matrix
+C6-DFS:
+  all subsets I
+  all valid permutation of parentheses I
+  combinations of coins
+  all permutations I
+C7-HashTable and String 1:
+  Top k frequent words
+  missing number I
+  Common numbers of two sorted array
+  Remove certain characters
+  Romove all leading/trailing/duplicate
+  space characters
+  remove adjacent repeated characters I
+  remove adjacent repeated characters IV
+  determine if one stirng is another's substring
+c8-String II
+  Reverse string
+  reverse words in sentences
+  right shift by N characters
+  string replace
+  string shuffling
+  all permutations (with duplicate)
+  decompressing string ii
+  longest substring with only unique characters
+  find all anagrams of short string in a long string.
