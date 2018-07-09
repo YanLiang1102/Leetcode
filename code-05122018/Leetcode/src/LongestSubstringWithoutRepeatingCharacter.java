@@ -18,14 +18,16 @@ class Solution {
         for(int i=1;i<s.length();i++)
         {
             char c=arr[i];
-            int index=s.substring(i-m[i-1],i).indexOf(c);
+            int startindex=i-m[i-1];
+            int index=s.substring(startindex,i).indexOf(c);
             if(index<0)
             {
                 m[i]=m[i-1]+1;
             }
             else
             {
-                m[i]=i-index;
+                //did not add the startindex here, that why it does not get passed at the first place on leetcode.
+                m[i]=i-(index+startindex);
             }
             globalmax=Math.max(globalmax,m[i]);
         }
