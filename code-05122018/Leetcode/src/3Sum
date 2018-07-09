@@ -1,0 +1,90 @@
+/***using two pointers to solve 3 sum problems****/
+
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        List<List<Integer>> result=new ArrayList<List<Integer>>();
+        int length=nums.length;
+        if(nums==null || length==0 || length==1 || length==2)
+        {
+            return result;
+        }
+        
+        //without order hard to get rid of duplicate, if allow duplicate ok, so [-1,1,0],[1,0,-1] are considered duplicate result here.
+        
+        //int i,j=0;
+//         for(int k=0;k<length-2;k++)
+//         {
+//             HashMap<Integer, Integer> hash=new HashMap();
+//             for(int i=k+1;i<length-1;i++)
+//             {
+//                 hash.put(0-nums[k]-nums[i],i);    
+//             }
+//             for(int i=k+1;i<length-1;i++)
+//             {
+//                 if(hash.containsKey(nums[i]))
+//                 {
+//                     int index=hash.get(nums[i]);
+//                     if(index<i)
+//                     {
+//                         ArrayList temp=new ArrayList<Integer>();
+//                         temp.add(nums[k]);
+//                         temp.add(nums[index]);
+//                         temp.add(nums[i]);
+//                         result.add(temp);                            
+//                     }
+
+
+//                 }
+
+//             }            
+//         }
+        Arrays.sort(nums);
+        for(int i=0;i<length-2;i++)
+        {
+            // if(i>=1&&nums[i]==nums[i-1])
+            // {
+            //     continue;
+            // }
+            int j=i+1;
+            int k=length-1;
+            int curr=nums[i];
+            while(j<k)
+            {
+                // while(nums[j]==nums[j-1])
+                // {
+                //     j++;
+                // }
+                // while(k<length-1&&nums[k]==nums[k+1])
+                // {
+                //     k--;
+                // }
+                if(nums[j]+nums[k]+curr>0)
+                {
+                    k--;
+                }
+                else if(nums[j]+nums[k]+curr<0)
+                {
+                    j++;
+                }
+                else
+                {
+                    ArrayList temp=new ArrayList<Integer>();
+                    temp.add(nums[i]);
+                    temp.add(nums[j]);
+                    temp.add(nums[k]);
+                    //this will check if the value of the arraylist inside of the arraylist equal to check contain, you can think of this as 
+                    //deep contain.
+                    if(!result.contains(temp))
+                    {
+                        result.add(temp);
+                    }
+                    result.add(temp);
+                    k--;j++;
+                }
+            }
+        }
+            
+        return result;
+        
+    }
+}
