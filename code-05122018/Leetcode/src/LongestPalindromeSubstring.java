@@ -5,7 +5,66 @@ m[i]=m[i-1]+2 if (the previous palindrom-1==currentindex char)
 else find all the previous j that match current i to see if that is a palindrom from the far left, if so break, since
 you already find the longest one. but it can be better, this is very slow what I wrote here.
 ***/
+
+/**
+using an array of two dimension to store, so m[i][j] will be if start at i and end at j is a palindrome, and need to check
+m[i+1][j-1] for induction
+the matrix should be filled in the way -- triangnal, then the line above triagnle then the line above that, 
+so the outside loop should be j-i which is the length of the string!! this is very important lesson
+**/
 class Solution {
+    //using array of two dimesnion to store the information!!
+     public String longestPalindrome(String s) {
+	          if(s==null||s.length()==1||s.length()==0)
+	          {
+	              return s;
+	          }
+	        int length=s.length();
+	        int globallength=1;
+	        String globalstring=s.substring(0,1);
+	        
+	        boolean[][] m=new boolean[length][length];
+	        int start=0;
+	        //int end=0;
+	        for(int i=0;i<length;i++)
+	        {
+	            m[i][i]=true;
+	        }
+	        for(int i=0;i<length-1;i++)
+	        {
+	            if(s.charAt(i)==s.charAt(i+1))
+	            {
+	                m[i][i+1]=true;
+	                 if(2>globallength)
+	                    {
+	                        globallength=2;
+	                        //globalstring=s.substring(i,i+2);
+	                        start=i;
+	                    }
+	            }
+	        }
+	      
+	            for(int len=2;len<length;len++)
+	            {
+	            	  for(int i=0;i+len<length;i++)
+	      	        {
+	                
+	                if(m[i+1][i+len-1]&&s.charAt(i)==s.charAt(i+len))
+	                {
+	                    m[i][i+len]=true;
+	                    if(len+1>globallength)
+	                    {
+	                        globallength=len+1;
+	                        start=i;
+	                        //globalstring=s.substring(i,j+1);
+	                    }
+	                }
+	                
+	            }
+	        }
+	        return s.substring(start,start+globallength);
+	    }
+    
     public String longestPalindrome(String s) {
           int globalmaxlength=0;
         String globalbest="";
