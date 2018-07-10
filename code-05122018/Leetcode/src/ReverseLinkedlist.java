@@ -6,7 +6,9 @@
  *     ListNode(int x) { val = x; }
  * }
  */
+//iterative
 class Solution {
+
     public ListNode reverseList(ListNode head) {
         Stack<ListNode> stack=new Stack<ListNode>();
         while(head!=null)
@@ -26,5 +28,37 @@ class Solution {
         }
         return dummy.next;
         
+    }
+    
+    
+}
+
+//recursive
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        //recursively;
+        if(head==null||head.next==null)
+        {
+            return head;
+        }
+        
+        ListNode dummy=reverseList(head.next);
+        //this is to get rid of the cycle.
+        head.next=null;
+        ListNode newhead=dummy;
+        while(newhead.next!=null)
+        {
+           newhead=newhead.next;
+        }
+        newhead.next=head;
+        return dummy;
     }
 }
