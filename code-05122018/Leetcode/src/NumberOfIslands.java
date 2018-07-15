@@ -1,5 +1,5 @@
 class Solution {
-    //bfs
+    //dfs
     public int numIslands(char[][] grid) {
          if(grid==null)
          {
@@ -26,8 +26,8 @@ class Solution {
                  if(grid[i][j]=='1')
                  {
                      count++;
-                     //bfs mark everything
-                     bfs(grid,i,j,row,col);
+                     //dfs mark everything
+                     dfs(grid,i,j,row,col);
                      
                  }
              }
@@ -45,10 +45,10 @@ class Solution {
            if(grid[i][j]=='1')
            {
                grid[i][j]='0';
-               bfs(grid,i-1,j,row,col);
-               bfs(grid,i+1,j,row,col);
-               bfs(grid,i,j-1,row,col);
-               bfs(grid,i,j+1,row,col);
+               dfs(grid,i-1,j,row,col);
+               dfs(grid,i+1,j,row,col);
+               dfs(grid,i,j-1,row,col);
+               dfs(grid,i,j+1,row,col);
            }
     }
 }
