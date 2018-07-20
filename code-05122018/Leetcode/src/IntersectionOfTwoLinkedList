@@ -1,0 +1,73 @@
+/*****
+the main idea is get teh diff of the two linked list and make the longer one start at the diff.
+all solved by myself.
+*****/
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+          if(headA==null||headB==null)
+          {
+              return null;
+          }
+          int len1=0;
+          int len2=0;
+          ListNode dummy1=headA;
+          ListNode dummy2=headB;
+          while(dummy1!=null)
+          {
+              len1++;
+              dummy1=dummy1.next;
+          }
+          
+          while(dummy2!=null)
+          {
+              len2++;
+              dummy2=dummy2.next;
+          }
+          
+          if(len1>=len2)
+          {
+              int diff=len1-len2;
+              return find(headA, headB,diff);
+          }
+          else
+          {
+              int diff=len2-len1;
+              return find(headB,headA,diff);
+          }
+           
+    }
+    //a will be the longer one
+    public ListNode find(ListNode a, ListNode b, int diff)
+    {
+        while(diff>0)
+        {
+            a=a.next;
+            diff--;
+        }
+        while(a!=b&&a!=null&&b!=null)
+        {
+            a=a.next;
+            b=b.next;
+        }
+        if(a==b)
+        {
+            return a;
+        }
+        else
+        {
+            return null;
+        }
+        
+    }
+}
