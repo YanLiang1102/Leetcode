@@ -62,8 +62,43 @@ public class NestedIterator implements Iterator<Integer> {
     }
 }
 
-/**
- * Your NestedIterator object will be instantiated and called as such:
- * NestedIterator i = new NestedIterator(nestedList);
- * while (i.hasNext()) v[f()] = i.next();
- */
+/***
+better solution, the idea is the same though.
+the better solution is you don't need to flatten it in an arrayList in the constructor, you can do it in the hasNext() 
+and the solution will also map oout the stuff that has empty list[]
+***/
+public class NestedIterator implements Iterator<Integer> {
+    //List<NestedInteger> list;
+    Stack<NestedInteger> stack= new Stack<NestedInteger>();
+    public NestedIterator(List<NestedInteger> nestedList) {
+       for(int i=nestedList.size()-1;i>=0;i--)
+       {
+           stack.push(nestedList.get(i));
+       }
+    }
+
+    @Override
+    public Integer next() {
+        
+        return stack.pop().getInteger();
+    }
+
+    @Override
+    public boolean hasNext() {
+        
+        while(!stack.isEmpty())
+        {
+            NestedInteger curr=stack.peek();
+            if(curr.isInteger())
+              return true;
+            stack.pop();
+            for(int i=curr.getList().size()-1;i>=0;i--)
+            {
+                stack.push(curr.getList().get(i));
+            }
+        }
+        return false;
+    }
+}
+
+
