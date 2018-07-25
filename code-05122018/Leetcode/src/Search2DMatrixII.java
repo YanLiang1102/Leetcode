@@ -48,3 +48,40 @@ class Solution {
     
     
 }
+
+//this is an O(M+N) solution much better than the dfs one, 
+class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
+
+       //great O(m+n) solution, each time will rule out either a row or col
+        //well the clever part is , it try to start at the top right, I started at top left
+    
+       if(matrix==null||matrix.length==0||matrix[0]==null||matrix[0].length==0)
+       {
+           return false;
+       }
+        
+        int row=matrix.length;
+        int i=0;
+        int col=matrix[0].length-1;
+        int j=col;
+        while(i<row&&j>=0)
+        {
+            if(matrix[i][j]==target)
+            {
+                return true;
+            }
+            else if(matrix[i][j]<target)
+            {
+                i++;
+            }
+            else
+            {
+                j--;
+            }
+        }
+        return false;
+    }
+    
+    
+}
