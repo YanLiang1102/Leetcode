@@ -2,6 +2,8 @@
 
 /***definitely working in eclipse but not leetcode, leetcode testing has problem....
 this problem is same as the binary tree in order traversal I mean iteratively
+the key point is: don't update the root after pop, since otherwise you will retraverse the left side of this node 
+again!!!!
 ****/
 import java.util.*;
 public class BSTIterator {
