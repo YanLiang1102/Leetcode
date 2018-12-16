@@ -16,17 +16,15 @@ class Solution {
         }
         String[] data=preorder.split(",");
         int length=data.length;
-        //System.out.println(data.length);
         Stack<Record> stack=new Stack<Record>();
         int index=0;
         stack.push(new Record(data[index]));
-        //index++;
         while(!stack.isEmpty()&&index<length-1)
         {
             index++;
             String current=data[index];
-            //index++;
             Record rec=stack.peek();
+            //detect some case like #,#,#
             if(rec.val.equals("#"))
             {
                 return false;
@@ -38,24 +36,11 @@ class Solution {
             }
             if(!current.equals("#"))
             {
-                System.out.println(String.format("ever get called?%s",current));
                 stack.push(new Record(current));
             }
         }
         if((stack.isEmpty()&&index<length-1)||!stack.isEmpty())
         {
-            System.out.println(String.format("index:%s",index));
-            System.out.println(String.format("length:%s",length));
-            if(stack.isEmpty())
-            {
-                System.out.println("stack is empty");
-            }
-            else
-            {
-                 System.out.println("stack is not empty");
-                 String t=stack.pop().val;
-                 System.out.println(String.format("item in stack is:%s",t));
-            }
             return false;
         }
         
